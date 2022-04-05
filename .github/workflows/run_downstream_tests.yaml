@@ -17,7 +17,7 @@ jobs:
   check_if_new_version_available:
     runs-on: ubuntu-latest
     # Run only if the build workflow has completed with success.
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    # if: ${{ github.event.workflow_run.conclusion == 'success' }}
     timeout-minutes: 10
     steps:
     - name: Print event data
