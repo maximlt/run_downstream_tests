@@ -17,7 +17,7 @@ jobs:
   check_if_new_version_available:
     runs-on: ubuntu-latest
     # Run only if the build workflow has completed with success.
-    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event.inputs.manual == true }} 
+    if: ${{ github.event.inputs.manual == true || github.event.workflow_run.conclusion == 'success' }} 
     timeout-minutes: 10
     steps:
     - name: Print event data
@@ -48,7 +48,7 @@ jobs:
       run: |
         # Use conda search to get metadata as json for a specific version.
         # If it's not available then version will be set to null, otherwise
-        # it'll be set to the version found in the metadata, .e. 1.12.1a1 (jq -r removes
+        # it'll be set to the version found in the metadata, i.e. 1.12.1a1 (jq -r removes
         # the surrounding quotes).
         # Using only pyviz/label/dev for the search, since dev releases and releases can
         # both be found in this channel. 
